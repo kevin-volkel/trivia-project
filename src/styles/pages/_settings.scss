@@ -1,0 +1,36 @@
+@use '../themes/defaultTheme' as *;
+@use '../util/variables' as *;
+@use '../util/mixins' as *;
+
+.settings {
+  margin-top: 1rem;
+  width: 100%;
+  .title {
+    text-align: center;
+    font-weight: bold;
+  }
+  .settings-form {
+    width: 50%;
+    @include center-auto;
+    display: flex;
+    flex-direction: column;
+    background-color: $clr-primary-8;
+
+    .setting {
+      display: flex;
+      gap: 10px;
+      label {
+        color: $clr-black;
+        font-size: 1.2rem;
+        align-self: center;
+        font-weight: 600;
+      }
+      input, select {
+        outline: none;
+        height: auto;
+        width: auto;
+        font-size: 1.2rem
+      }
+    }
+  }
+}

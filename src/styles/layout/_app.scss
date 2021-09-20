@@ -2,30 +2,3 @@
 @use '../util/variables' as *;
 @use '../util/mixins' as *;
 
-.section {
-  width: 90vw;
-  margin: 0 auto;
-  max-width: $max-width;
-  @include flex-center-column;
-}
-
-@include large {
-  .section {
-    width: 95vw;
-  }
-}
-
-.news {
-  width: 80vw;
-  display: grid;
-  justify-items: center;
-  justify-content: center;
-  gap: 2rem;
-  @include center-auto;
-}
-
-@include tablet {
-  .news {
-    grid-template-columns: 40vw 40vw;
-  }
-}
