@@ -1,0 +1,18 @@
+@use '../themes/defaultTheme' as *;
+@use '../util/variables' as *;
+@use '../util/mixins' as *;
+
+.single-question{
+  background-color: $clr-primary-1; 
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: $radius;
+  .question{
+    font-size: 1.2rem;
+    color: $clr-secondary-5;
+  }
+  .answer{
+    font-size: 1rem;
+    color: $clr-secondary-7;
+  }
+}

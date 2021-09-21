@@ -1,0 +1,14 @@
+@use '../themes/defaultTheme' as *;
+@use '../util/variables' as *;
+@use '../util/mixins' as *;
+
+.home{
+  margin-top: 1rem;
+  h2{
+    text-align: center;
+  }
+  .questions{
+    width: 75vw;
+    @include center-auto;
+  }
+}

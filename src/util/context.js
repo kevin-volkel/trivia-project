@@ -1,17 +1,16 @@
-import React, { useState, useContext } from 'react'
-import { useFetch } from './useFetch'
+import React, { useState, useContext } from 'react';
+import { useFetch } from './useFetch';
 
-const TriviaContext = React.createContext()
+const TriviaContext = React.createContext();
 
-export const TriviaProvider = ({children}) => {
-  const [params, setParams] = useState('amount=10')
-  const {trivia, loading, error} = useFetch(params)
+export const TriviaProvider = ({ children }) => {
+  const [params, setParams] = useState('amount=10');
 
-  return <TriviaContext.Provider value = {params, setParams, trivia, loading, error}>
-    {children}
-  </TriviaContext.Provider>
-}
+  return <TriviaContext.Provider value={{params, setParams}}>
+      {children}
+    </TriviaContext.Provider>
+};
 
 export const useTriviaContext = () => {
-  return useContext(TriviaContext)
-}
+  return useContext(TriviaContext);
+};

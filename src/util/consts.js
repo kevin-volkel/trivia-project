@@ -6,8 +6,8 @@ import Settings from '../Pages/Settings'
 export const pages = [
   {
     id: 2,
-    url: '/parameters',
-    text: 'parameters',
+    url: '/settings',
+    text: 'settings',
     component: <Settings /> 
   },
   {
