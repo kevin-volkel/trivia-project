@@ -362,8 +362,23 @@ body {
   color: #ebc247;
 }
 .single-question .answer {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  width: 100%;
   font-size: 1rem;
   color: #f2d788;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+.single-question .answer:hover {
+  background: #152056;
+  color: #ebc247;
+}
+.single-question .answer.revealed {
+  color: red;
+}
+.single-question .answer.revealed.correct {
+  color: green;
 }
 
 .settings {
@@ -375,14 +390,16 @@ body {
   font-weight: bold;
 }
 .settings .settings-form {
-  width: 50%;
   margin-left: auto;
   margin-right: auto;
+  padding: 0.5rem 1rem;
+  width: 70%;
   display: flex;
   flex-direction: column;
   background-color: #b1bbec;
 }
 .settings .settings-form .setting {
+  margin-top: 0.5rem;
   display: flex;
   gap: 10px;
 }
@@ -392,11 +409,32 @@ body {
   align-self: center;
   font-weight: 600;
 }
-.settings .settings-form .setting input, .settings .settings-form .setting select {
+.settings .settings-form .setting label.amount-label {
+  width: 17rem;
+}
+.settings .settings-form .setting input,
+.settings .settings-form .setting select {
   outline: none;
   height: auto;
-  width: auto;
+  width: 100%;
   font-size: 1.2rem;
+  padding: 2px 5px;
+}
+.settings .settings-form .button-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+.settings .settings-form .button-container button {
+  width: 7.5rem;
+  height: 2.5rem;
+  background: #ebc247;
+  border-radius: 0.25rem;
+  border: 1px solid #cfa117;
+  color: #fff;
+}
+.settings .settings-form .button-container button:hover {
+  background: #cfa117;
+  border: 1px solid #aa8413;
 }
 
 .home {
@@ -404,6 +442,7 @@ body {
 }
 .home h2 {
   text-align: center;
+  font-weight: bold;
 }
 .home .questions {
   width: 75vw;

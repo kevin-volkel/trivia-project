@@ -24,7 +24,7 @@ const Settings = () => {
       <h2 className="title">Settings</h2>
       <form onSubmit={updateParams} className="settings-form">
         <div className="setting">
-          <label htmlFor="amount">Number of Questions: </label>
+          <label htmlFor="amount" className = "amount-label">Number of Questions: </label>
           <input
             className="amount-input"
             type="number"

@@ -12,7 +12,23 @@
     color: $clr-secondary-5;
   }
   .answer{
+    padding: .5rem 1rem;
+    border-radius: $radius;
+    width: 100%;
     font-size: 1rem;
     color: $clr-secondary-7;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    &:hover{
+      background: $clr-primary-0;
+      color: $clr-secondary-5
+    }
+
+    &.revealed{
+      color: red;
+    }
+    &.revealed.correct{
+      color: green;
+    }
   }
 }

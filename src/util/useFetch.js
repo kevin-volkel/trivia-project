@@ -3,11 +3,24 @@ import { useTriviaContext } from './context'
 
 const API_ENDPOINT = `https://opentdb.com/api.php?` //? amount=10&category=9&difficulty=easy&type=multiple
 
+
 export const useFetch = (query) => {
-  const { params } = useTriviaContext();
+  const { params, setAuthToken, authToken } = useTriviaContext();
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState({showing: false, msg: ''})
   const [trivia, setTrivia] = useState([])
+  
+  useEffect(async () => {
+    try{
+      const response = await fetch('https://opentdb.com/api_token.php?command=request');
+      const data = await response.json();
+      setAuthToken(data.token)
+      console.log(authToken);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [])
+
 
   const fetchTrivia = async (url) => {
     setLoading(true)
