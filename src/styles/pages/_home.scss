@@ -2,14 +2,30 @@
 @use '../util/variables' as *;
 @use '../util/mixins' as *;
 
-.home{
+.home {
   margin-top: 1rem;
-  h2{
+  h2 {
     text-align: center;
     font-weight: bold;
   }
-  .questions{
+  .questions {
     width: 75vw;
     @include center-auto;
+  }
+  .button-container {
+    @include flex-center;
+    .refresh {
+      width: 20rem;
+      height: 3rem;
+      background: $clr-primary-1;
+      color: $clr-secondary-6;
+      border-radius: $radius;
+      margin-bottom: 2rem;
+
+      &:hover {
+        background: $clr-primary-0;
+        color: $clr-secondary-3;
+      }
+    }
   }
 }

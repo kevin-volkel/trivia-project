@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { categories } from '../util/consts';
 import { useTriviaContext } from '../util/context';
+import { useFetch } from '../util/useFetch';
 
 const Settings = () => {
+  const url = 'https://opentdb.com/api_category.php'
   const { params, setParams } = useTriviaContext();
-  const [amount, setAmount] = useState(10);
-  const [category, setCategory] = useState('');
-  const [difficulty, setDifficulty] = useState('mixed');
+  const [categories, setCategories] = useState([])
 
-
-  const updateParams = (e) => {
-    e.preventDefault();
-    setParams(
-      `amount=${amount}&` +
-        (difficulty !== 'mixed' ? `difficulty=${difficulty}&` : '') +
-        (category !== 1 ? `category=${category}&` : '') +
-        'type=multiple'
-    );
-  };
+  useEffect( async () => {
+    try{
+      const response = await fetch(url)
+      const data = await response.json()
+      setCategories(data.trivia_categories)
+    } catch (error) {
+      console.error(error);
+    }
+  }, [])
 
   return (
     <div className="settings">
       <h2 className="title">Settings</h2>
-      <form onSubmit={updateParams} className="settings-form">
+      <form className="settings-form">
         <div className="setting">
-          <label htmlFor="amount" className = "amount-label">Number of Questions: </label>
+          <label htmlFor="amount" className="amount-label">
+            Number of Questions:{' '}
+          </label>
           <input
             className="amount-input"
             type="number"
             name="amount"
-            value={amount}
+            value={params.amount}
             onChange={(e) =>
-              setAmount(
-                e.target.value > 0 && e.target.value < 31
-                  ? e.target.value
-                  : amount
-              )
+              setParams({
+                ...params,
+                amount: e.target.value > 30 ? 30 : e.target.value < 0 ? 0 : e.target.value
+              })
             }
           />
         </div>
@@ -44,8 +44,8 @@ const Settings = () => {
           <select
             name="difficulty"
             className="difficulty"
-            value={difficulty}
-            onChange={(e) => setDifficulty(e.target.value)}
+            value={params.difficulty}
+            onChange={(e) => setParams({...params, difficulty: e.target.value})}
           >
             <option value="mixed">Mixed</option>
             <option value="easy">Easy</option>
@@ -58,9 +58,12 @@ const Settings = () => {
           <select
             name="category"
             className="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            value={params.category}
+            onChange={(e) => setParams({...params, category: e.target.value})}
           >
+            <option value={1}>
+                  Any Category
+                </option>
             {categories.map((category) => {
               return (
                 <option value={category.id} key={category.id}>
@@ -70,9 +73,9 @@ const Settings = () => {
             })}
           </select>
         </div>
-        <div className="button-container">
+        {/* <div className="button-container">
           <button type="submit">Save Settings</button>
-        </div>
+        </div> */}
       </form>
     </div>
   );

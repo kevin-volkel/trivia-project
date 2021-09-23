@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTriviaContext } from './context'
 
-const API_ENDPOINT = `https://opentdb.com/api.php?` //? amount=10&category=9&difficulty=easy&type=multiple
+const API_ENDPOINT = `https://opentdb.com/` //? amount=10&category=9&difficulty=easy&type=multiple
 
 
 export const useFetch = (query) => {
@@ -28,7 +28,9 @@ export const useFetch = (query) => {
     try{
       const response = await fetch(url)
       const data = await response.json()
-      setTrivia(data.results)
+      setTrivia(data.results || data)
+      setError(data.response_code)
+      setLoading(false)
     } catch (error) {
       console.error(error);
     }

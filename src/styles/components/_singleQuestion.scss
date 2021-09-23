@@ -7,9 +7,26 @@
   padding: 1rem;
   margin-bottom: 2rem;
   border-radius: $radius;
+  &.correct{
+    border: 2px solid green;
+  }
+  &.wrong{
+    border: 2px solid red;
+  }
   .question{
     font-size: 1.2rem;
     color: $clr-secondary-5;
+    @include flex-center;
+    flex-direction: column-reverse;
+    .cross{
+      color: red;
+    }
+    .check{
+      color: green;
+    }
+    svg{
+      margin-bottom: 10px;
+    }
   }
   .answer{
     padding: .5rem 1rem;
@@ -27,7 +44,7 @@
     &.revealed{
       color: red;
     }
-    &.revealed.correct{
+    &.revealed.correct-answer{
       color: green;
     }
   }

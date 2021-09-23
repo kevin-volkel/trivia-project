@@ -4,7 +4,14 @@ import { useFetch } from './useFetch';
 const TriviaContext = React.createContext();
 
 export const TriviaProvider = ({ children }) => {
-  const [params, setParams] = useState('amount=10');
+
+
+  const [params, setParams] = useState({
+    amount: 10,
+    category: 1,
+    difficulty: 'mixed',
+    loop: 0
+  });
   const [score, setScore] = useState(0)
   const [authToken, setAuthToken] = useState('')
 

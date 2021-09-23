@@ -1,28 +1,50 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import SingleQuestion from '../Components/SingleQuestion';
-import { useTriviaContext } from '../util/context'
+import Spinner from '../Components/Spinner';
+import Error from '../Components/Error';
+import { useTriviaContext } from '../util/context';
 import { useFetch } from '../util/useFetch';
-
 
 const Home = () => {
   const { params, score, setScore, setParams } = useTriviaContext();
-  const { trivia, loading, error } = useFetch(params);
+  const { trivia, loading, error } = useFetch(
+    `api.php?amount=${params.amount}&` +
+      (params.difficulty !== 'mixed'
+        ? `difficulty=${params.difficulty}&`
+        : '') +
+      (params.category !== 1 ? `category=${params.category}&` : '')
+  );
 
   useEffect(() => {
-    setScore(0)
-  }, [params])
+    setScore(0);
+  }, [params]);
 
   return (
-    <div className = "home">
-      {console.log(trivia)}
-      <h2>Home</h2>
-      <div className="questions">
-        {trivia.map( (question, i) => <SingleQuestion key = {i} {...question}/>)}
-      </div>
-      <h2 className = "score">Score: {score} / {params.split('&')[0].split('amount=')[1]}</h2>
-      <button onClick = { () => setParams(params + "&")}>Refresh</button>
+    <div className="home">
+      <h2>TRIVIA</h2>
+      {loading ? (
+        <Spinner />
+      ) : error > 0 ? (
+        <Error errorCode={error} />
+      ) : (
+        <>
+          <div className="questions">
+            {trivia.map((question, i) => (
+              <SingleQuestion key={i} {...question} />
+            ))}
+          </div>
+          <h2 className="score">
+            Score: {score} / {params.amount}
+          </h2>
+          <div className="button-container">
+            <button onClick={() => setParams({...params, loop: params.loop + 1})} className="refresh">
+              Refresh
+            </button>
+          </div>
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

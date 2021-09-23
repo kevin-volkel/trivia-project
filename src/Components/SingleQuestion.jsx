@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTriviaContext } from '../util/context';
-import { ImCross, ImCheck } from 'react-icons/im';
+import { ImCross, ImCheckmark } from 'react-icons/im';
 
 const SingleQuestion = ({
   question,
@@ -11,6 +11,7 @@ const SingleQuestion = ({
   const [revealed, setRevealed] = useState(false);
   const [newAnswers, setNewAnswers] = useState([]);
   const { score, setScore } = useTriviaContext();
+  const [correct, setCorrect] = useState(false);
 
   const decode = (text) => {
     let txt = document.createElement('textarea');
@@ -48,23 +49,34 @@ const SingleQuestion = ({
   const answerQuestion = (e) => {
     console.log(e.target);
     setRevealed(true);
-    if (
-      e.target.classList.contains('correct') &&
-      !e.target.classList.contains('revealed')
-    ) {
+    if (e.target.innerHTML === correct_answer && !revealed) {
       setScore(score + 1);
+      setCorrect(true);
     }
     console.log(score);
   };
 
   return (
-    <div className="single-question">
-      <h4 className="question">{decode(question)}</h4>
+    <div
+      className={`single-question ${
+        !revealed ? '' : correct ? 'correct' : 'wrong'
+      }`}
+    >
+      <h4 className="question">
+        {decode(question)}
+        {!revealed ? (
+          ''
+        ) : correct && revealed ? (
+          <ImCheckmark className="check" />
+        ) : (
+          <ImCross className="cross" />
+        )}
+      </h4>
       {newAnswers.map((answer, i) => {
         return (
           <p
             key={i}
-            className={`answer ${answer.correct ? 'correct' : ''} ${
+            className={`answer ${answer.correct && revealed ? 'correct-answer' : ''} ${
               revealed ? 'revealed' : ''
             }`}
             onClick={answerQuestion}

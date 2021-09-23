@@ -11,10 +11,10 @@ function App() {
       <Route exact path = "/">
         <Home />
       </Route>
-      {pages.filter((page) => page.text !== 'home')
+      {pages.filter((page) => page.text !== 'trivia')
       .map( (page) => {
-        const {url, component} = page;
-        return <Route path = {url}>
+        const {url, component, id} = page;
+        return <Route key = {id} path = {url}>
           {component}
         </Route>
       })}
