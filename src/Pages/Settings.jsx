@@ -21,7 +21,7 @@ const Settings = () => {
   return (
     <div className="settings">
       <h2 className="title">SETTINGS</h2>
-      <form className="settings-form">
+      <form className="settings-form" onSubmit = { (e) => e.preventDefault()}>
         <div className="setting">
           <label htmlFor="amount" className="amount-label">
             Number of Questions:{' '}
