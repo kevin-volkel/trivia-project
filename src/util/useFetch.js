@@ -5,7 +5,7 @@ const API_ENDPOINT = `https://opentdb.com/` //? amount=10&category=9&difficulty=
 
 
 export const useFetch = (query) => {
-  const { params, token } = useTriviaContext();
+  const { params, token, tokensUsed } = useTriviaContext();
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(0)
   const [trivia, setTrivia] = useState([])
@@ -26,7 +26,7 @@ export const useFetch = (query) => {
 
   useEffect( () => {
     fetchTrivia(`${API_ENDPOINT}${query}`)
-  }, [params, token])
+  }, [params, token, tokensUsed])
 
   return {loading, error, trivia}
 }

@@ -1,8 +1,27 @@
+@use '../themes/defaultTheme' as *;
+@use '../util/variables' as *;
+@use '../util/mixins' as *;
 
 .error{
   h1{
     font-size: 1.6rem;
     font-weight: bold;
     text-align: center;
+  }
+  .button-container {
+    @include flex-center;
+    .refresh {
+      width: 20rem;
+      height: 3rem;
+      background: $clr-primary-1;
+      color: $clr-secondary-6;
+      border-radius: $radius;
+      margin-bottom: 2rem;
+      transition: $transition;
+      &:hover {
+        background: $clr-primary-0;
+        color: $clr-secondary-4;
+      }
+    }
   }
 }

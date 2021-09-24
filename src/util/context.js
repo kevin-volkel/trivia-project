@@ -1,6 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { useAuth } from './useAuth';
-import { useFetch } from './useFetch';
 
 const TriviaContext = React.createContext();
 
@@ -14,10 +12,9 @@ export const TriviaProvider = ({ children }) => {
     loop: 0
   });
   const [score, setScore] = useState(0)
-  const [newToken, setNewToken] = useState(true)
-  const { token } = useAuth(newToken);
+  const [tokensUsed, setTokensUsed] = useState(0)
 
-  return <TriviaContext.Provider value={{params, setParams, score, setScore, token, newToken}}>
+  return <TriviaContext.Provider value={{params, setParams, score, setScore, tokensUsed, setTokensUsed}}>
       {children}
     </TriviaContext.Provider>
 };

@@ -8,14 +8,15 @@
   margin-bottom: 2rem;
   border-radius: $radius;
   &.correct{
-    border: 2px solid green;
+    border: 2px solid $clr-green-dark;
   }
   &.wrong{
-    border: 2px solid red;
+    border: 2px solid $clr-red-dark;
   }
   .question{
     font-size: 1.2rem;
-    color: $clr-secondary-5;
+    font-family: $question-font;
+    color: $clr-secondary-4;
     @include flex-center;
     flex-direction: column-reverse;
     .question-text{
@@ -24,10 +25,10 @@
       font-size: 1.5rem;
     }
     .cross{
-      color: red;
+      color: $clr-red-dark;
     }
     .check{
-      color: green;
+      color: $clr-green-dark;
     }
     svg{
       margin-bottom: 10px;
@@ -38,7 +39,8 @@
     border-radius: $radius;
     width: 100%;
     font-size: 1rem;
-    color: $clr-secondary-7;
+    color: $clr-secondary-6;
+    font-family: $answer-font;
     transition: all 0.2s ease-in;
     cursor: pointer;
     &:hover{
@@ -47,10 +49,10 @@
     }
 
     &.revealed{
-      color: red;
+      color: $clr-red-dark;
     }
     &.revealed.correct-answer{
-      color: green;
+      color: $clr-green-dark;
     }
   }
 }

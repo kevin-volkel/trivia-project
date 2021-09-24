@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { pages } from "../util/consts";
-import { FaHamburger } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -29,7 +29,7 @@ const Navbar = () => {
         {!setShowLinks < 768 && (
           <div className="nav-header">
             <button className="nav-toggle" onClick={toggleLinks}>
-              <FaHamburger />
+              <GiHamburgerMenu />
             </button>
           </div>
         )}

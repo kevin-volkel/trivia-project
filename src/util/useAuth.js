@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { useTriviaContext } from './context'
 
 
-export const useAuth = (isReset = false) => {
+export const useAuth = () => {
+  const { tokensUsed } = useTriviaContext();
   const [token, setToken] = useState('')
-  const [tokensUsed, setTokensUsed] = useState(0)
-  
-  // if(isReset){
-  //   setTokensUsed(tokensUsed + 1)
-  //   setToken('')
-  // }
 
   const fetchToken = async () => {
     try{

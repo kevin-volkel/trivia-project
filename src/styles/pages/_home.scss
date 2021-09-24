@@ -21,10 +21,10 @@
       color: $clr-secondary-6;
       border-radius: $radius;
       margin-bottom: 2rem;
-
+      transition: $transition;
       &:hover {
         background: $clr-primary-0;
-        color: $clr-secondary-3;
+        color: $clr-secondary-4;
       }
     }
   }

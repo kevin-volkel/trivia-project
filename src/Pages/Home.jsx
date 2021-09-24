@@ -7,8 +7,10 @@ import { useFetch } from '../util/useFetch';
 import { useAuth } from '../util/useAuth';
 
 const Home = () => {
-  const { params, score, setScore, setParams, token } = useTriviaContext();
+  const { params, score, setScore, setParams } = useTriviaContext();
   ;
+
+  const { token } = useAuth();
 
   const { trivia, loading, error } = useFetch(
     `api.php?amount=${params.amount}&` +
@@ -16,7 +18,7 @@ const Home = () => {
         ? `difficulty=${params.difficulty}&`
         : '') +
       (params.category !== 1 ? `category=${params.category}&` : '') 
-      // + `&token=${token}`
+      + `&token=${token}`
   );
 
   useEffect(() => {
