@@ -281,23 +281,25 @@ body {
 .navbar .nav-center .links-container.show {
   height: auto;
 }
-.navbar .nav-center .links li, .navbar .nav-center .links li a:visited {
-  color: #f7d15f;
-  font-size: 1rem;
-  text-transform: capitalize;
-  letter-spacing: 0.1rem;
+.navbar .nav-center .links li {
   display: block;
   padding: 0.5rem 1rem;
   transition: all 0.5s linear;
   position: relative;
 }
-.navbar .nav-center .links li:hover, .navbar .nav-center .links li a:visited:hover {
+.navbar .nav-center .links li a, .navbar .nav-center .links li a:visited {
+  color: #f7d15f;
+  font-size: 1rem;
+  text-transform: capitalize;
+  letter-spacing: 0.1rem;
+}
+.navbar .nav-center .links li:hover {
   background: #c5b1ec;
   color: #daa60b;
   padding-left: 1.5rem;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
 }
-.navbar .nav-center .links li::after, .navbar .nav-center .links li a:visited::after {
+.navbar .nav-center .links li::after {
   content: "";
   display: block;
   positoin: absolute;
