@@ -5,22 +5,10 @@ const API_ENDPOINT = `https://opentdb.com/` //? amount=10&category=9&difficulty=
 
 
 export const useFetch = (query) => {
-  const { params, setAuthToken, authToken } = useTriviaContext();
+  const { params, token } = useTriviaContext();
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState({showing: false, msg: ''})
+  const [error, setError] = useState(0)
   const [trivia, setTrivia] = useState([])
-  
-  useEffect(async () => {
-    try{
-      const response = await fetch('https://opentdb.com/api_token.php?command=request');
-      const data = await response.json();
-      setAuthToken(data.token)
-      console.log(authToken);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [])
-
 
   const fetchTrivia = async (url) => {
     setLoading(true)
@@ -38,7 +26,7 @@ export const useFetch = (query) => {
 
   useEffect( () => {
     fetchTrivia(`${API_ENDPOINT}${query}`)
-  }, [params])
+  }, [params, token])
 
   return {loading, error, trivia}
 }

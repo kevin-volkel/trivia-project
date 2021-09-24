@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import SingleQuestion from '../Components/SingleQuestion';
 import Spinner from '../Components/Spinner';
 import Error from '../Components/Error';
 import { useTriviaContext } from '../util/context';
 import { useFetch } from '../util/useFetch';
+import { useAuth } from '../util/useAuth';
 
 const Home = () => {
-  const { params, score, setScore, setParams } = useTriviaContext();
+  const { params, score, setScore, setParams, token } = useTriviaContext();
+  ;
+
   const { trivia, loading, error } = useFetch(
     `api.php?amount=${params.amount}&` +
       (params.difficulty !== 'mixed'
         ? `difficulty=${params.difficulty}&`
         : '') +
-      (params.category !== 1 ? `category=${params.category}&` : '')
+      (params.category !== 1 ? `category=${params.category}&` : '') 
+      // + `&token=${token}`
   );
 
   useEffect(() => {
@@ -30,7 +34,7 @@ const Home = () => {
         <>
           <div className="questions">
             {trivia.map((question, i) => (
-              <SingleQuestion key={i} {...question} />
+              <SingleQuestion qNum = {i + 1} key={i} {...question} />
             ))}
           </div>
           <h2 className="score">

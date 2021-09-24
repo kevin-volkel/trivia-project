@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { categories } from '../util/consts';
 import { useTriviaContext } from '../util/context';
-import { useFetch } from '../util/useFetch';
 
 const Settings = () => {
   const url = 'https://opentdb.com/api_category.php'

@@ -371,6 +371,13 @@ body {
   justify-content: center;
   flex-direction: column-reverse;
 }
+.single-question .question .question-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1.5rem;
+}
 .single-question .question .cross {
   color: red;
 }
@@ -408,8 +415,19 @@ body {
   border: 3.5px solid #c5cfd8;
   border-top-color: #cfa117;
   border-radius: 50%;
-  animation: spinner 1s linear infinite;
+  -webkit-animation: spinner 1s linear infinite;
+          animation: spinner 1s linear infinite;
   margin-top: 10vh;
+}
+@-webkit-keyframes spinner {
+  50% {
+    transform: rotate(180deg);
+    border-top-color: #e7b623;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-top-color: #cfa117;
+  }
 }
 @keyframes spinner {
   50% {
